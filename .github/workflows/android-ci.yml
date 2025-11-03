@@ -36,16 +36,16 @@ jobs:
 #            ${{ runner.os }}-gradle-
 #
       # Step 4: Build your app
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+#      - name: Build Debug APK
+#        run: ./gradlew assembleDebug
 #
 #      # Step 5: Run Unit Tests
 #      - name: Run Unit Tests
 #        run: ./gradlew testDebugUnitTest
 #
-#      # Step 6: Upload build artifact (optional)
-#      - name: Upload APK
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: debug-apk
-#          path: app/build/outputs/apk/debug/app-debug.apk
+      # Step 6: Upload build artifact (optional)
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
