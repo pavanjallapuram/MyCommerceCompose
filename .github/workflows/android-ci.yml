@@ -1,0 +1,51 @@
+
+name: AndroidCI
+
+on:
+  push:
+    branches: [ pavan_ci_cd, master ]
+  pull_request:
+    branches: [ pavan_ci_cd, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SetUp JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+
+
+      # Step 3: Setup Gradle cache (speeds up builds)
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      # Step 4: Build your app
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      # Step 5: Run Unit Tests
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+      # Step 6: Upload build artifact (optional)
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
