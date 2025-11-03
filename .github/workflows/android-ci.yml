@@ -24,20 +24,20 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-#      # Step 3: Cache Gradle for faster builds
-#      - name: Cache Gradle files
-#        uses: actions/cache@v3
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-#          restore-keys: |
-#            gradle-${{ runner.os }}-
-#
-#      # Step 4: Grant permission to Gradle wrapper
-#      - name: Make gradlew executable
-#        run: chmod +x ./gradlew
+      # Step 3: Cache Gradle for faster builds
+      - name: Cache Gradle files
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      # Step 4: Grant permission to Gradle wrapper
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
       # Step 5: Run Android Lint
       - name: Run Lint Check
