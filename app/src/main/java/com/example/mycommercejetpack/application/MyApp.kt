@@ -17,6 +17,7 @@ class MyApp: Application() {
     lateinit var userSingleTon: UserSingleTon
 
 
+
     override fun onCreate() {
         super.onCreate()
         FirebaseApp.initializeApp(this)
