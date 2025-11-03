@@ -35,9 +35,9 @@ jobs:
 #          restore-keys: |
 #            ${{ runner.os }}-gradle-
 #
-#      # Step 4: Build your app
-#      - name: Build Debug APK
-#        run: ./gradlew assembleDebug
+      # Step 4: Build your app
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
 #
 #      # Step 5: Run Unit Tests
 #      - name: Run Unit Tests
