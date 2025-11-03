@@ -5,6 +5,8 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -19,6 +21,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.mycommercejetpack.HiltTestRunner"
     }
 
     buildTypes {
@@ -70,6 +73,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
 
     implementation("com.google.dagger:hilt-android:2.56.1")
+    implementation(libs.androidx.junit.ktx)
     ksp("com.google.dagger:hilt-android-compiler:2.56.1")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -82,13 +86,33 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
 
+    implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
+    implementation("com.google.firebase:firebase-analytics")
+
+
+
+    // Firebase Authentication
+    implementation("com.google.firebase:firebase-auth")
+
 
 
     testImplementation(libs.junit)
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
+    testImplementation("io.mockk:mockk:1.13.12")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation("org.mockito:mockito-android:5.11.0")
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.56.1")
+    kspAndroidTest("com.google.dagger:hilt-android-compiler:2.56.1")
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(kotlin("test"))
+
 }

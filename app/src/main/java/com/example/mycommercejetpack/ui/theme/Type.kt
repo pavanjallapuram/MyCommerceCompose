@@ -2,9 +2,11 @@ package com.example.mycommercejetpack.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.mycommercejetpack.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -32,3 +34,26 @@ val Typography = Typography(
     )
     */
 )
+
+val ralewayBold = FontFamily(
+    Font(R.font.raleway_bold, FontWeight.Bold)
+)
+
+val ralewayExtraBold = FontFamily(
+    Font(R.font.raleway_extrabold, FontWeight.ExtraBold)
+)
+
+val nunitosansregular = FontFamily(
+    Font(R.font.nunitosansregular, FontWeight.Normal)
+)
+
+val ralewayMedium = FontFamily(
+    Font(R.font.ralewaymedium, FontWeight.Medium)
+)
+
+val nunitoSansLight = FontFamily(Font(R.font.nunitosanslight, FontWeight.Light))
+
+val nunitoSansSemiBold = FontFamily(Font(R.font.nunito_sans_semibold, FontWeight.SemiBold))
+
+
+

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -24,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,19 +34,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import com.example.mycommercejetpack.R
+import com.example.mycommercejetpack.data.Product
 import com.example.mycommercejetpack.ui.theme.BgGrey
 import com.example.mycommercejetpack.ui.theme.BlueCustom
 import com.example.mycommercejetpack.viewmodels.ProductsViewModel
-import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
-import com.example.mycommercejetpack.data.Product
 
 
 @Composable
-fun ProductsHomeScreen(onProductSelected: (Product) ->Unit ={},
-                       myViewModel: ProductsViewModel = hiltViewModel()
+fun ProductsHomeScreen(
+    onProductSelected: (Product) -> Unit ={}, onSettingsSelected: () -> Unit = {},
+    onWishListSelected: () -> Unit = {},onCartListSelected: () -> Unit = {},
+    myViewModel: ProductsViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
         myViewModel.loadProducts()
@@ -53,7 +56,7 @@ fun ProductsHomeScreen(onProductSelected: (Product) ->Unit ={},
     val products by myViewModel.products.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.fillMaxWidth().statusBarsPadding()) {
 
             Row(
                 modifier = Modifier
@@ -90,20 +93,41 @@ fun ProductsHomeScreen(onProductSelected: (Product) ->Unit ={},
 
                 Spacer(modifier = Modifier.weight(1f)) // Pushes settings icon to end
 
-                Box(
-                    modifier = Modifier
-                        .size(24.dp) // Total size including background
-                        .background(BgGrey, CircleShape) // Circular background
-                ) {
+                Row(verticalAlignment = Alignment.CenterVertically){
+
+                    Image(
+                        painter = painterResource(R.drawable.ic_like_wishlist),
+                        contentDescription = "settings",
+                        modifier = Modifier
+                            .size(40.dp)       // Icon size // Center icon inside Box
+                            .padding(7.dp,2.dp)     // Padding inside background, only for icon
+                            .clickable{
+                                onWishListSelected()
+                            }
+                    )
+
+                    Image(
+                        painter = painterResource(R.drawable.ic_cart),
+                        contentDescription = "settings",
+                        modifier = Modifier
+                            .size(40.dp)       // Icon size // Center icon inside Box
+                            .padding(7.dp,2.dp)    // Padding inside background, only for icon
+                            .clickable{
+                                onCartListSelected()
+                            }
+                    )
+
                     Image(
                         painter = painterResource(R.drawable.ic_settings),
                         contentDescription = "settings",
                         modifier = Modifier
-                            .size(26.dp)       // Icon size
-                            .align(Alignment.Center) // Center icon inside Box
-                            .padding(5.dp)     // Padding inside background, only for icon
-                            .clip(CircleShape)
+                            .size(40.dp)
+                            .padding(7.dp,2.dp)// Icon size // Center icon inside Box
+                            .clickable{
+                                onSettingsSelected()
+                            }
                     )
+
                 }
 
 
@@ -158,6 +182,11 @@ fun ProductItemScreen(product: Product, onProductSelected: (Product) -> Unit) {
 
     }
 }
+
+
+
+
+
 
 
 
