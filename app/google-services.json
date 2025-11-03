@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1045488241281",
+    "project_id": "shoppecommerce-ae3a5",
+    "storage_bucket": "shoppecommerce-ae3a5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045488241281:android:4619b0345d0e5cb5a41b80",
+        "android_client_info": {
+          "package_name": "com.example.mycommercejetpack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXZk3IWV1m0et3ZiIEuo7YZWzPyd-QEOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
