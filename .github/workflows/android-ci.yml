@@ -50,3 +50,6 @@ jobs:
         with:
           name: android-lint-report
           path: app/build/reports/lint-results-debug.html
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
