@@ -53,6 +53,7 @@ jobs:
 
   unit-tests:
     name: Run Unit Tests
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
