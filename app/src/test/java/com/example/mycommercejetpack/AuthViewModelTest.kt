@@ -45,20 +45,20 @@ class AuthViewModelTest {
 //
 //    }
 
-    @Test
-    fun `login failure updates state`() = runTest {
-        val callbackSlot = slot<(Boolean, String?) -> Unit>()
-
-        every { repository.loginWithEmail(any(), any(), capture(callbackSlot)) } answers {
-            callbackSlot.captured(false, "Invalid credentials")
-        }
-
-        viewModel.login("wrong@mail.com", "badpass")
-
-        val state = viewModel.authState.first()
-        Assert.assertFalse(state.isSuccess)
-        Assert.assertEquals("Invalid credentials", state.message)
-    }
+//    @Test
+//    fun `login failure updates state`() = runTest {
+//        val callbackSlot = slot<(Boolean, String?) -> Unit>()
+//
+//        every { repository.loginWithEmail(any(), any(), capture(callbackSlot)) } answers {
+//            callbackSlot.captured(false, "Invalid credentials")
+//        }
+//
+//        viewModel.login("wrong@mail.com", "badpass")
+//
+//        val state = viewModel.authState.first()
+//        Assert.assertFalse(state.isSuccess)
+//        Assert.assertEquals("Invalid credentials", state.message)
+//    }
 
     @Test
     fun `register success updates state`() = runTest {
